@@ -61,7 +61,8 @@ public class Inventario implements Serializable{
 	private String descripcion;
 	@NotEmpty
 	private String estado;
-	
+	//Ejemplo para agregar un nuevo atributo -previamente debes implementar 
+	// El mysql
 	@NotEmpty
 	private String nombreproducto;
 	public String getNombreproducto() {
