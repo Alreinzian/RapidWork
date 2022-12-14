@@ -43,7 +43,7 @@ public class ClienteController {
 		Cliente cliente = new Cliente();
 		model.put("cliente", cliente);
 		model.put("titulo", "Registrar cliente");
-		model.put("subTitulo", "Registar");
+		model.put("subTitulo", "Registrar");
 		return "form";
 	}
 	//Method for edit
