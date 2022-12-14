@@ -1,79 +1,63 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head >
-<meta charset="UTF-8" />
-<title th:text="'RapidWork'+${titulo}">Inventario</title>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-<link rel="stylesheet" href="CSS/style.css">
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head th:replace="layout/layout :: head">
 </head>
 <body>
-
 	<header th:replace="layout/layout :: header"></header>
-
-	<div class="container">
-		<h1 th:text="${titulo}"
-			class="text-secondary border border-success border-top-0 border-left-0 border-right-0"></h1>
-
-		<div th:object="${cliente}" th:remove="tag">
-			<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
-				<li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
-			</ul>
+	<aside th:replace="layout/layout :: sidebar"></aside>
+	<main id="main" class="main">
+		<div class="pagetitle">
+			<h1 th:text="${titulo}"></h1>
+			<nav>
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="/index">Inicio</a></li>
+					<li class="breadcrumb-item">Clientes</li>
+					<li class="breadcrumb-item active">Tabla</li>
+				</ol>
+			</nav>
 		</div>
-		<form th:action="@{/form}" th:object="${cliente}" method="post">
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">ID</label>
-				<div class="col-sm-6">
-					<input type="text" th:field="*{id}" class="form-control"
-						th:errorclass="'form-control alert-danger'" /> <small
-						class="form-text text-danger"
-						th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></small>
+		<section class="section">
+			<div class="row">
+				<div class="col-lg">
+					<div class="card">
+						<div class="card-body">
+							<h5 class="card-title" th:text="${titulo}"></h5>
+							<table class="table table-hover">
+								<thead>
+									<tr>
+										<th scope="col">Id</th>
+										<th scope="col">Codigo</th>
+										<th scope="col">Descripcion</th>
+										<th scope="col">Estado</th>
+										<th scope="col">Precio</th>
+										<th scope="col">Cantidad</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="inventario: ${iventarios}">
+										<td th:text="${inventario.id}"></td>
+										<td th:text="${inventario.codigo}"></td>
+										<td th:text="${inventario.descripcion}"></td>
+										<td th:text="${inventario.estado}"></td>
+										<td th:text="${inventario.precio}"></td>
+										<td th:text="${inventario.cantidad}"></td>
+										<td><a class="btn btn-primary btn-sm boton"
+											th:href="@{/form/} + ${cliente.id}" th:text="'editar'"></a>
+											<span> | </span>
+											<a
+											class="btn btn-danger btn-sm boton"
+											th:href="@{/eliminar/} + ${cliente.id}" th:text="'eliminar'"
+											onclick=" confirm('Estás seguro que quieres eliminar?');"></a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Codigo</label>
-				<div class="col-sm-6">
-					<input type="text" th:field="*{codigo}" class="form-control"
-						th:errorclass="'form-control alert-danger'" /> <small
-						class="form-text text-danger"
-						th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"></small>
-				</div>
-			</div>
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Precio</label>
-				<div class="col-sm-6">
-					<input type="text" th:field="*{precio}" class="form-control"
-						th:errorclass="'form-control alert-danger'" /> <small
-						class="form-text text-danger"
-						th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></small>
-				</div>
-			</div>
-			<!--COMENTANDO -->
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Descripcion</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" th:field="*{createAt}"
-						th:errorclass="'form-control alert-danger'" /> <small
-						class="form-text text-danger"
-						th:if="${#fields.hasErrors('descripcion')}" th:errors="*{createAt}"></small>
-				</div>
-				<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Estado</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" th:field="*{createAt}"
-						th:errorclass="'form-control alert-danger'" /> <small
-						class="form-text text-danger"
-						th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></small>
-				</div>
-			</div>
-			<div class="form-group row">
-				<div class="col-sm-6">
-					<input type="submit" value="Crear Cliente" class="btn btn-primary" />
-				</div>
-			</div>
-
-		</form>
-	</div>
-
+		</section>
+	</main>
+	<footer th:replace="layout/layout :: footer"></footer>
 </body>
 </html>
