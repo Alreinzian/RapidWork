@@ -2,92 +2,64 @@ package com.bolsadeideas.springboot.app.models.entity;
 
 import java.io.Serializable;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
-
+import javax.validation.constraints.NotNull;
+@Entity
+@Table(name="inventario")
 public class Inventario implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@NotEmpty
-	private Long codigo;
-	@NotEmpty
-	private Long cantidad;
 	public Long getId() {
 		return id;
 	}
-
-
 	public void setId(Long id) {
 		this.id = id;
 	}
-
-
 	public Long getCodigo() {
 		return codigo;
 	}
-
-
 	public void setCodigo(Long codigo) {
 		this.codigo = codigo;
 	}
-
-
-	public Long getCantidad() {
-		return cantidad;
-	}
-
-
-	public void setCantidad(Long cantidad) {
-		this.cantidad = cantidad;
-	}
-
-
-	public String getNombre_producto() {
-		return nombre_producto;
-	}
-
-
-	public void setNombre_producto(String nombre_producto) {
-		this.nombre_producto = nombre_producto;
-	}
-
-
-	public String getPrioridad() {
-		return prioridad;
-	}
-
-
-	public void setPrioridad(String prioridad) {
-		this.prioridad = prioridad;
-	}
-
-
-	public double getPrecio() {
+	public Long getPrecio() {
 		return precio;
 	}
-
-
-	public void setPrecio(double precio) {
+	public void setPrecio(Long precio) {
 		this.precio = precio;
 	}
-
-
-	public static long getSerialversionuid() {
-		return serialVersionUID;
+	public Double getCantidad() {
+		return cantidad;
 	}
-
-
+	public void setCantidad(Double cantidad) {
+		this.cantidad = cantidad;
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
+	}
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	@NotNull
+	private Long codigo;
+	@NotNull
+	private Long precio;
+	@NotNull
+	private Double cantidad;
 	@NotEmpty
-	private String nombre_producto;
+	private String descripcion;
 	@NotEmpty
-	private String prioridad;
-	@NotEmpty
-	private double precio;
-	
-	
+	private String estado;
 	private static final long serialVersionUID = 1L;
 }
