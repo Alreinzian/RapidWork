@@ -61,5 +61,14 @@ public class Inventario implements Serializable{
 	private String descripcion;
 	@NotEmpty
 	private String estado;
+	
+	@NotEmpty
+	private String nombreproducto;
+	public String getNombreproducto() {
+		return nombreproducto;
+	}
+	public void setNombreproducto(String nombreproducto) {
+		this.nombreproducto = nombreproducto;
+	}
 	private static final long serialVersionUID = 1L;
 }
